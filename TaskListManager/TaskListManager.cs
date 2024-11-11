@@ -21,4 +21,16 @@ public class TaskListManager {
         return tasks[numTasks-1].GetId();
     }
 
+    public bool HasTask(string id) {
+        return Convert.ToInt32(id) < numTasks;
+    }
+
+    public void MarkTask(string id) {
+        int idx = Convert.ToInt32(id);
+        tasks[idx].MarkCompleted();
+    }
+
+    public int NumTasks() {
+        return this.numTasks;
+    }
 }

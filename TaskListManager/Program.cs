@@ -21,14 +21,31 @@
                 }
                 else {
                     Task[] tasks = manager.GetTasks();
-                    foreach(Task task in tasks) {
-                        Console.WriteLine($"{task.GetId()}: {task.GetDescription()}");
-                        
+                    for(int i = 0; i < manager.NumTasks(); i++) {
+                        Task task = tasks[i];
+                        string status = task.GetStatus() ? "Completa" : "Por Completar";
+                        // string status;
+                        // if(task.GetStatus()) {
+                        //     status = "Completa";
+                        // }
+                        // else {
+                        //     status = "Por Completar";
+                        // }
+                        Console.WriteLine($"[{status}] {task.GetId()}: {task.GetDescription()}");
                     }
                 }
             }
             else if(operation == "MT"){
-
+                // line = "MT 2"         <- string
+                // tokens = ["MT", "2"]  <- string[]
+                string id = tokens[1];
+                if(!manager.HasTask(id)) {
+                    Console.WriteLine("Tarefa inexistente.");
+                }
+                else {
+                    manager.MarkTask(id);
+                    Console.WriteLine("Tarefa concluída com sucesso.");
+                }
             }
         }
     }
